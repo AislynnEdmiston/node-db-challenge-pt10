@@ -6,6 +6,7 @@ exports.up = async function(knex) {
             .unique()
             .notNullable()
         tbl.text("description", 128)
+            .notNullable()
         tbl.boolean("complete")
             .defaultTo(0)
             .notNullable()
