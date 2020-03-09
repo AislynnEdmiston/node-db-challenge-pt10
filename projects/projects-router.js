@@ -1,7 +1,10 @@
 const express = require("express")
 const db = require("../data/config")
+const tasksRouter = require("../tasks/tasks-router")
 
 const router = express.Router()
+
+router.use("/:id/tasks", tasksRouter)
 
 async function getAllProjects (req, res, next) {
     try {
