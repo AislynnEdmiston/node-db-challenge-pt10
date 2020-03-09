@@ -29,8 +29,21 @@ async function getProjectById (req, res, next) {
     }
 }
 
+async function addNewProject(req, res, next) {
+    try {
+        const projectData = req.body
+        const [ id ] = await db("projects").insert(projectData)
+        const newProject = await db("projects").where({ id })
+
+        res.status(201).json(newProject)
+    } catch (err) {
+        next(err)
+    }
+}
+
 router
     .get("/", getAllProjects)
     .get("/:id", getProjectById)
+    .post("/", addNewProject)
 
 module.exports = router
